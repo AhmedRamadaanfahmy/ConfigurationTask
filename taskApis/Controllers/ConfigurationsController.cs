@@ -44,8 +44,6 @@ namespace taskApis.Controllers{
 
         [HttpPost]
 
-       // [EnableCors("http://localhost:4200")]
-        
         public IActionResult Add([FromBody] ConfigurationDTO configurationDTO)
         {
             this._ctx.Configurations.Add(new Configuration{
