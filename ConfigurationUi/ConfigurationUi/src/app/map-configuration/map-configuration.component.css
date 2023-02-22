@@ -107,7 +107,7 @@ select[name="mapSubTypes"]{
 select[name="mapTypes"]{
     margin-left: 86px;
 }
-button{
+.resetBtn{
     margin-left: 70px;
     height: 33px;
     border: solid;

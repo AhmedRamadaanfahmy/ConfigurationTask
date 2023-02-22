@@ -41,9 +41,10 @@ export class MapConfigurationComponent implements OnInit {
       "mapTypeId": this.selectedMapType,
       "mapSubTypeId": this.selectedMapSubType
     }
-    console.log(this.configurationObject);
     this._api_service.addConfiguration(this.configurationObject).subscribe((result)=> {
-      console.warn(result);
+      if(result == 1){
+        alert("Saved Successfully");
+      }
     });
 
   }
@@ -57,7 +58,7 @@ export class MapConfigurationComponent implements OnInit {
     }
   }
   reset(){
-    for(let i = 0; i < document.getElementsByTagName("input").length; i++){
+    for(let i = 0; i < document.getElementsByTagName("input").length - 2; i++){
         document.getElementsByTagName("input")[i].value = "";
     }
     document.getElementsByTagName("select")[0].value = "";
