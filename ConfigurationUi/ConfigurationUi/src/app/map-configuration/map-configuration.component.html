@@ -1,0 +1,60 @@
+<div class="container">
+    <form (ngSubmit) = "onClickSubmit(configForm.value)" #configForm = "ngForm" #signupForm="ngForm" >
+        <h2 class="map_setting">Map Settings</h2>
+        <hr />
+        <div class="form-group">
+                <label for="cluster_radius">Cluster Radius</label>
+                <input id="cluster_radius" #name="ngModel" required (change)="getValidated($event)" min="0.01" max="99.999" name="cluster_radius" type="number" class="form-control" ngModel/>
+                <span>M</span>
+                <span class="space"></span>
+                <label for="geo_fencing">Geo Fenciing</label>
+                <label class="switch">
+                    <input id="geo_fencing" type="checkbox" (change)="GetStatus($event)" name="geo_fencing">
+                    <span class="slider round"></span>
+                </label>
+        </div>
+        <div *ngIf="name.touched && name.invalid" class="alert alert-danger">
+            Zero is not allowed, the value must be between 0.01 and 99</div>
+        <br />
+        <br />
+        <h2 class="map_setting">Duplication Event Configuration</h2>
+        <hr />
+        <div class="form-group">
+            <label for="time_buffer">Time Buffer</label>
+            <input name="time_buffer" (change)="getValidated($event)" type="number" class="form-control" ngModel/>
+            <span>Minutes</span>
+            <span class="space"></span>
+            <label for="location_buffer">Location Buffer</label>
+            <input name="location_buffer" (change)="getValidated($event)" type="number" class="form-control" ngModel/>
+            <span>KM</span>
+        </div>
+        <br />
+        <br />
+        <h2 class="map_setting">End Event Duration</h2>
+        <hr />
+        <div class="form-group">
+            <label for="duration">Duration</label>
+            <input name="duration" (change)="getValidated($event)" type="number" class="form-control"  ngModel/>
+            <span>Minutes</span>
+        </div>
+        <br /><br /><br /><br />
+        <div class="form-group">
+            <label>Map Type</label>
+            <select name="mapTypes" (change)="getSubTypes($event)">
+                <option ></option>
+                <option *ngFor="let map_type of mapTypesValues" value={{map_type.id}}>{{map_type.value}}</option>
+            </select>
+        </div>
+        <br />
+        <div class="form-group">
+            <label>Map Sub Type</label>
+            <select name="mapSubTypes" (change)="getSelectedValue($event)">
+                <option name="mapSubType" class="mapSubType"></option>
+                <option *ngFor="let mapSubType of mapSubTypes" value={{mapSubType.id}}>{{mapSubType.value}}</option>
+            </select>
+        </div>
+        <br />
+        <input type = "submit" value = "submit">
+        <button (click)="reset()">Reset</button>
+    </form>
+</div>
